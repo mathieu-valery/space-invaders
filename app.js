@@ -22,8 +22,6 @@ const alienInvaders = [
     30,31,32,33,34,35,36,37,38,39
 ]
 
-console.log(alienInvaders.length);
-
 function draw() {
         
         for (let i = 0; i < alienInvaders.length; i++) {
