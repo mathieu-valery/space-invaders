@@ -22,11 +22,19 @@ const alienInvaders = [
     30,31,32,33,34,35,36,37,38,39
 ]
 
-function draw() {
+console.log(alienInvaders.length);
 
+function draw() {
+        
         for (let i = 0; i < alienInvaders.length; i++) {
-            if(!aliensRemoved.includes(i)) {
-                tiles[alienInvaders[i]].classList.add('invader')
+            if(tiles[alienInvaders[i]] === undefined) {
+                resultDisplay.innerHTML = "GAME OVER"
+                clearInterval(invadersId);
+            } else {
+        
+                if(!aliensRemoved.includes(i)) { //draw if the alien is not removed
+                    tiles[alienInvaders[i]].classList.add('invader')
+                }
             }
         }
 }
@@ -92,25 +100,21 @@ function moveInvaders() {
 
     for (let i= 0; i < alienInvaders.length; i++) {
         
-        if(alienInvaders[i] > tiles.length) {
-            resultDisplay.innerHTML = "GAME OVER"
+        if (aliensRemoved.length === alienInvaders.length) {
+            resultDisplay.innerHTML = "YOU WIN"
             clearInterval(invadersId);
         }
-    }
-
-    if (aliensRemoved.length === alienInvaders.length) {
-        resultDisplay.innerHTML = "YOU WIN"
-        clearInterval(invadersId);
     }
 
     
 }
 
-invadersId = setInterval(moveInvaders, 500);
+invadersId = setInterval(moveInvaders, 100);
 
 function shoot(e) {
     let laserId;
     let currentLaserIndex = currentShooterIndex;
+    
 
     function moveLaser() {
         tiles[currentLaserIndex].classList.remove('laser');
