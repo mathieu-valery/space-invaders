@@ -111,6 +111,7 @@ invadersId = setInterval(moveInvaders, 500);
 function shoot(e) {
     let laserId;
     let currentLaserIndex = currentShooterIndex;
+
     function moveLaser() {
         tiles[currentLaserIndex].classList.remove('laser');
         currentLaserIndex -= width
@@ -120,7 +121,8 @@ function shoot(e) {
             tiles[currentLaserIndex].classList.remove('laser');
             tiles[currentLaserIndex].classList.remove('invader');
             tiles[currentLaserIndex].classList.add('boom');
-
+            let audioInvaderKilled = new Audio('sounds/invaderkilled.wav');
+            audioInvaderKilled.play();
             setTimeout(() => tiles[currentLaserIndex].classList.remove('boom'), 300)
             clearInterval(laserId)
             score ++
@@ -132,6 +134,8 @@ function shoot(e) {
     }
     switch (e.key) {
         case 's':
+            let audioShoot = new Audio('sounds/shoot.wav');
+            audioShoot.play();
             laserId = setInterval(moveLaser, 100)
     }
 }
