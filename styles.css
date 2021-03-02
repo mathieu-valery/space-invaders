@@ -39,6 +39,10 @@ body {
     
 }
 
+.destroyed {
+    background-image: url("images/shooter-destroyed.png");
+}
+
 .laser {
     background-image: url("images/laser.png");
     background-size: cover;
@@ -49,4 +53,12 @@ body {
     background-image: url("images/boom.png");
     background-size: cover;
     
+}
+
+.black {
+    color: black
+}
+
+.green {
+    color: green;
 }

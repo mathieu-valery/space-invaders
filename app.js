@@ -107,6 +107,7 @@ function moveInvaders() {
 function gameOver() {
     resultDisplay.innerHTML = "GAME OVER press a key to play again"
     clearInterval(invadersId);
+    tiles[currentShooterIndex].classList.add('destroyed') 
     let audioExplosion = new Audio('sounds/explosion.wav');
     audioExplosion.volume = 0.05
     audioExplosion.play();
@@ -119,10 +120,23 @@ function youWin() {
     let audioVictory = new Audio('sounds/ff7-victory.mp3');
     audioVictory.volume = 0.005
     audioVictory.play();
+
+    setInterval(function(){
+        if(resultDisplay.classList.contains("black")) {
+            resultDisplay.classList.add("green")
+            resultDisplay.classList.remove("black")
+            return
+        } else if(resultDisplay.classList.contains("green")){
+            resultDisplay.classList.add("black")
+            resultDisplay.classList.remove("green")
+            return
+        }
+    },1000)
+
     document.addEventListener("keydown", function(){document.location.reload()})
 }
 
-invadersId = setInterval(moveInvaders, 500);
+invadersId = setInterval(moveInvaders, 100);
 
 function shoot(e) {
     let laserId;
