@@ -129,8 +129,14 @@ function shoot(e) {
     function moveLaser() {
             tiles[currentLaserIndex].classList.remove('laser');
             currentLaserIndex -= width
-            tiles[currentLaserIndex].classList.add('laser');
 
+            if (currentLaserIndex < 0) {
+                clearInterval(laserId)
+                return
+            }
+
+            tiles[currentLaserIndex].classList.add('laser');
+            
             if(tiles[currentLaserIndex].classList.contains('invader')) {
                 tiles[currentLaserIndex].classList.remove('laser');
                 tiles[currentLaserIndex].classList.remove('invader');
@@ -144,7 +150,6 @@ function shoot(e) {
                 resultDisplay.innerHTML = score
                 let alienRemoved = alienInvaders.indexOf(currentLaserIndex);
                 aliensRemoved.push(alienRemoved);
-        
             }
     }
     switch (e.key) {
