@@ -29,6 +29,7 @@ function draw() {
                 resultDisplay.innerHTML = "GAME OVER press a key to play again"
                 clearInterval(invadersId);
                 let audioExplosion = new Audio('sounds/explosion.wav');
+                audioExplosion.volume = 0.05
                 audioExplosion.play();
                 document.addEventListener("keydown", function(){document.location.reload()})
             } else {
@@ -98,6 +99,7 @@ function moveInvaders() {
         resultDisplay.innerHTML = "GAME OVER press a key to play again"
         clearInterval(invadersId);
         let audioExplosion = new Audio('sounds/explosion.wav');
+        audioExplosion.volume = 0.05
         audioExplosion.play();
         document.addEventListener("keydown", function(){document.location.reload()})
     }
@@ -108,7 +110,7 @@ function moveInvaders() {
             resultDisplay.innerHTML = "YOU WIN press a key to play again"
             clearInterval(invadersId);
             let audioVictory = new Audio('sounds/ff7-victory.mp3');
-            audioVictory.volume = 0.05
+            audioVictory.volume = 0.01
             audioVictory.play();
             document.addEventListener("keydown", function(){document.location.reload()})
         }
@@ -134,6 +136,7 @@ function shoot(e) {
                 tiles[currentLaserIndex].classList.remove('invader');
                 tiles[currentLaserIndex].classList.add('boom');
                 let audioInvaderKilled = new Audio('sounds/invaderkilled.wav');
+                audioInvaderKilled.volume = 0.05
                 audioInvaderKilled.play();
                 setTimeout(() => tiles[currentLaserIndex].classList.remove('boom'), 300)
                 clearInterval(laserId)
@@ -147,6 +150,7 @@ function shoot(e) {
     switch (e.key) {
         case 's':
             let audioShoot = new Audio('sounds/shoot.wav');
+            audioShoot.volume = 0.05
             audioShoot.play();
             laserId = setInterval(moveLaser, 100)
     }
