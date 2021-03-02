@@ -5,9 +5,11 @@ let currentShooterIndex = 202;
 let width = 15; //a line has 15 tiles
 let direction = 1;
 let invadersId
+let flashId
 let goingRight = true
 let aliensRemoved = []
 let score = 0
+let userWon = false
 
 for (let i=0; i < 225; i++) {
     const tile = document.createElement("div")
@@ -61,7 +63,6 @@ function moveShooter(e) {
 }
 document.addEventListener('keydown', moveShooter);
 
-
 function moveInvaders() {
     const leftEdge = alienInvaders[0] % width === 0;
     const rightEdge = alienInvaders[alienInvaders.length - 1] % width === width -1;
@@ -94,11 +95,9 @@ function moveInvaders() {
         gameOver();
     }
 
-    for (let i= 0; i < alienInvaders.length; i++) {
         
-        if (aliensRemoved.length === alienInvaders.length) {
-            youWin();
-        }
+    if (aliensRemoved.length === alienInvaders.length) {
+        youWin();
     }
 
     
@@ -118,25 +117,19 @@ function youWin() {
     resultDisplay.innerHTML = "YOU WIN press a key to play again"
     clearInterval(invadersId);
     let audioVictory = new Audio('sounds/ff7-victory.mp3');
-    audioVictory.volume = 0.005
+    audioVictory.volume = 0.5
     audioVictory.play();
-
-    setInterval(function(){
-        if(resultDisplay.classList.contains("black")) {
-            resultDisplay.classList.add("green")
-            resultDisplay.classList.remove("black")
-            return
-        } else if(resultDisplay.classList.contains("green")){
-            resultDisplay.classList.add("black")
-            resultDisplay.classList.remove("green")
-            return
-        }
-    },1000)
-
+    clearInterval(flashId)
+    flashId = setInterval(flash,100)
     document.addEventListener("keydown", function(){document.location.reload()})
 }
 
-invadersId = setInterval(moveInvaders, 100);
+function flash() {
+    let victoryText = document.querySelector(".results")
+    victoryText.style.color = (resultDisplay.style.color=='black') ? 'green':'black';
+} 
+
+invadersId = setInterval(moveInvaders, 500);
 
 function shoot(e) {
     let laserId;
