@@ -26,12 +26,7 @@ function draw() {
         
         for (let i = 0; i < alienInvaders.length; i++) {
             if(tiles[alienInvaders[i]] === undefined) {
-                resultDisplay.innerHTML = "GAME OVER press a key to play again"
-                clearInterval(invadersId);
-                let audioExplosion = new Audio('sounds/explosion.wav');
-                audioExplosion.volume = 0.05
-                audioExplosion.play();
-                document.addEventListener("keydown", function(){document.location.reload()})
+                gameOver();
             } else {
         
                 if(!aliensRemoved.includes(i)) { //draw if the alien is not removed
@@ -96,27 +91,35 @@ function moveInvaders() {
     draw()
 
     if (tiles[currentShooterIndex].classList.contains('invader', 'shooter')) {
-        resultDisplay.innerHTML = "GAME OVER press a key to play again"
-        clearInterval(invadersId);
-        let audioExplosion = new Audio('sounds/explosion.wav');
-        audioExplosion.volume = 0.05
-        audioExplosion.play();
-        document.addEventListener("keydown", function(){document.location.reload()})
+        gameOver();
     }
 
     for (let i= 0; i < alienInvaders.length; i++) {
         
         if (aliensRemoved.length === alienInvaders.length) {
-            resultDisplay.innerHTML = "YOU WIN press a key to play again"
-            clearInterval(invadersId);
-            let audioVictory = new Audio('sounds/ff7-victory.mp3');
-            audioVictory.volume = 0.01
-            audioVictory.play();
-            document.addEventListener("keydown", function(){document.location.reload()})
+            youWin();
         }
     }
 
     
+}
+
+function gameOver() {
+    resultDisplay.innerHTML = "GAME OVER press a key to play again"
+    clearInterval(invadersId);
+    let audioExplosion = new Audio('sounds/explosion.wav');
+    audioExplosion.volume = 0.05
+    audioExplosion.play();
+    document.addEventListener("keydown", function(){document.location.reload()})
+}
+
+function youWin() {
+    resultDisplay.innerHTML = "YOU WIN press a key to play again"
+    clearInterval(invadersId);
+    let audioVictory = new Audio('sounds/ff7-victory.mp3');
+    audioVictory.volume = 0.005
+    audioVictory.play();
+    document.addEventListener("keydown", function(){document.location.reload()})
 }
 
 invadersId = setInterval(moveInvaders, 500);
