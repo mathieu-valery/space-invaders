@@ -26,8 +26,11 @@ function draw() {
         
         for (let i = 0; i < alienInvaders.length; i++) {
             if(tiles[alienInvaders[i]] === undefined) {
-                resultDisplay.innerHTML = "GAME OVER"
+                resultDisplay.innerHTML = "GAME OVER press a key to play again"
                 clearInterval(invadersId);
+                let audioExplosion = new Audio('sounds/explosion.wav');
+                audioExplosion.play();
+                document.addEventListener("keydown", function(){document.location.reload()})
             } else {
         
                 if(!aliensRemoved.includes(i)) { //draw if the alien is not removed
@@ -92,15 +95,22 @@ function moveInvaders() {
     draw()
 
     if (tiles[currentShooterIndex].classList.contains('invader', 'shooter')) {
-        resultDisplay.innerHTML = "GAME OVER"
+        resultDisplay.innerHTML = "GAME OVER press a key to play again"
         clearInterval(invadersId);
+        let audioExplosion = new Audio('sounds/explosion.wav');
+        audioExplosion.play();
+        document.addEventListener("keydown", function(){document.location.reload()})
     }
 
     for (let i= 0; i < alienInvaders.length; i++) {
         
         if (aliensRemoved.length === alienInvaders.length) {
-            resultDisplay.innerHTML = "YOU WIN"
+            resultDisplay.innerHTML = "YOU WIN press a key to play again"
             clearInterval(invadersId);
+            let audioVictory = new Audio('sounds/ff7-victory.mp3');
+            audioVictory.volume = 0.05
+            audioVictory.play();
+            document.addEventListener("keydown", function(){document.location.reload()})
         }
     }
 
@@ -115,24 +125,24 @@ function shoot(e) {
     
 
     function moveLaser() {
-        tiles[currentLaserIndex].classList.remove('laser');
-        currentLaserIndex -= width
-        tiles[currentLaserIndex].classList.add('laser');
-
-        if(tiles[currentLaserIndex].classList.contains('invader')) {
             tiles[currentLaserIndex].classList.remove('laser');
-            tiles[currentLaserIndex].classList.remove('invader');
-            tiles[currentLaserIndex].classList.add('boom');
-            let audioInvaderKilled = new Audio('sounds/invaderkilled.wav');
-            audioInvaderKilled.play();
-            setTimeout(() => tiles[currentLaserIndex].classList.remove('boom'), 300)
-            clearInterval(laserId)
-            score ++
-            resultDisplay.innerHTML = score
-            let alienRemoved = alienInvaders.indexOf(currentLaserIndex);
-            aliensRemoved.push(alienRemoved);
-       
-        }
+            currentLaserIndex -= width
+            tiles[currentLaserIndex].classList.add('laser');
+
+            if(tiles[currentLaserIndex].classList.contains('invader')) {
+                tiles[currentLaserIndex].classList.remove('laser');
+                tiles[currentLaserIndex].classList.remove('invader');
+                tiles[currentLaserIndex].classList.add('boom');
+                let audioInvaderKilled = new Audio('sounds/invaderkilled.wav');
+                audioInvaderKilled.play();
+                setTimeout(() => tiles[currentLaserIndex].classList.remove('boom'), 300)
+                clearInterval(laserId)
+                score ++
+                resultDisplay.innerHTML = score
+                let alienRemoved = alienInvaders.indexOf(currentLaserIndex);
+                aliensRemoved.push(alienRemoved);
+        
+            }
     }
     switch (e.key) {
         case 's':
@@ -140,6 +150,10 @@ function shoot(e) {
             audioShoot.play();
             laserId = setInterval(moveLaser, 100)
     }
+}
+
+function playAgain() {
+
 }
 
 document.addEventListener('keydown', shoot)

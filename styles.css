@@ -1,3 +1,19 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 40px;
+    padding-right: 40px;;
+}
+
+.logo {
+    width: 250px
+}
+
 .grid {
     width: 300px;
     height: 300px;
@@ -18,13 +34,19 @@
 }
 
 .shooter {
-    background-color: green;
+    background-image: url("images/shooter.png");
+    background-size: cover;
+    
 }
 
 .laser {
-    background-color: orange;
+    background-image: url("images/laser.png");
+    background-size: cover;
+    
 }
 
 .boom {
-    background-color: red;
+    background-image: url("images/boom.png");
+    background-size: cover;
+    
 }
