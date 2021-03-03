@@ -111,7 +111,7 @@ function moveInvaders() {
 }
 
 function gameOver() {
-    resultDisplay.innerHTML = "GAME OVER press a key to play again"
+    resultDisplay.innerHTML = "GAME OVER press a key or shoot to play again"
     clearInterval(invadersId);
     tiles[currentShooterIndex].classList.add('destroyed') 
     let audioExplosion = new Audio('sounds/explosion.wav');
@@ -122,7 +122,7 @@ function gameOver() {
 }
 
 function youWin() {
-    resultDisplay.innerHTML = "YOU WIN press a key to play again"
+    resultDisplay.innerHTML = "YOU WIN press a key or shoot to play again"
     clearInterval(invadersId);
     let audioVictory = new Audio('sounds/ff7-victory.mp3');
     audioVictory.volume = 0.1
