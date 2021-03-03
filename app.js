@@ -12,7 +12,6 @@ let flashId
 let goingRight = true
 let aliensRemoved = []
 let score = 0
-let userWon = false
 
 for (let i=0; i < 225; i++) {
     const tile = document.createElement("div")
