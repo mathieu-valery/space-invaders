@@ -23,10 +23,6 @@ h1 {
     width: 250px
 }
 
-.container-grid {
-    position: relative;
-}
-
 .grid {
     width: var(--width);
     height: var(--width);
