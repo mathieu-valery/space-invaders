@@ -166,7 +166,7 @@ function shoot(e) {
                 setTimeout(() => tiles[currentLaserIndex].classList.remove('boom'), 300)
                 clearInterval(laserId)
                 score ++
-                resultDisplay.innerHTML = "Score : " + score
+                resultDisplay.innerHTML = `Score : ${score}`
                 let alienRemoved = alienInvaders.indexOf(currentLaserIndex);
                 aliensRemoved.push(alienRemoved);
             }
