@@ -4,8 +4,6 @@ const buttonLeft = document.getElementById("button-left")
 const buttonRight = document.getElementById("button-right")
 const buttonShoot = document.getElementById("button-shoot")
 
-
-
 let currentShooterIndex = 202;
 let width = 15; //a line has 15 tiles
 let direction = 1;
@@ -101,13 +99,10 @@ function moveInvaders() {
     if (tiles[currentShooterIndex].classList.contains('invader', 'shooter')) {
         gameOver();
     }
-
-        
+  
     if (aliensRemoved.length === alienInvaders.length) {
         youWin();
     }
-
-    
 }
 
 function gameOver() {
@@ -144,7 +139,6 @@ function shoot(e) {
     let laserId;
     let currentLaserIndex = currentShooterIndex;
     
-
     function moveLaser() {
             tiles[currentLaserIndex].classList.remove('laser');
             currentLaserIndex -= width
@@ -179,7 +173,6 @@ function shoot(e) {
         laserId = setInterval(moveLaser, 100)
     }
 }
-
 
 document.addEventListener('keydown', shoot)
 
