@@ -6,6 +6,11 @@ body {
     font-family: 'Press Start 2P', cursive;
 }
 
+h1 {
+    height: 50px;
+    max-height: 50px;
+}
+
 .container {
     display: flex;
     align-items: center;

@@ -118,6 +118,7 @@ function gameOver() {
     audioExplosion.volume = 0.05
     audioExplosion.play();
     document.addEventListener("keydown", function(){document.location.reload()})
+    buttonShoot.addEventListener('click', function(){document.location.reload()})
 }
 
 function youWin() {
@@ -129,6 +130,7 @@ function youWin() {
     clearInterval(flashId)
     flashId = setInterval(flash,100)
     document.addEventListener("keydown", function(){document.location.reload()})
+    buttonShoot.addEventListener('click', function(){document.location.reload()})
 }
 
 function flash() {
@@ -164,7 +166,7 @@ function shoot(e) {
                 setTimeout(() => tiles[currentLaserIndex].classList.remove('boom'), 300)
                 clearInterval(laserId)
                 score ++
-                resultDisplay.innerHTML = score
+                resultDisplay.innerHTML = "Score : " + score
                 let alienRemoved = alienInvaders.indexOf(currentLaserIndex);
                 aliensRemoved.push(alienRemoved);
             }
