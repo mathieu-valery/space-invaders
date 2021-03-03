@@ -29,16 +29,13 @@ const alienInvaders = [
 
 function draw() {
         
-        for (let i = 0; i < alienInvaders.length; i++) {
-            if(tiles[alienInvaders[i]] === undefined) {
-                gameOver();
-            } else {
-        
-                if(!aliensRemoved.includes(i)) { //draw if the alien is not removed
-                    tiles[alienInvaders[i]].classList.add('invader')
-                }
-            }
+    for (let i = 0; i < alienInvaders.length; i++) {
+        if(!tiles[alienInvaders[i]]) {
+            gameOver();
+        } else if(!aliensRemoved.includes(i)) { //draw if the alien is not removed
+            tiles[alienInvaders[i]].classList.add('invader')
         }
+    }
 }
 
 draw();
@@ -96,13 +93,9 @@ function moveInvaders() {
 
     draw()
 
-    if (tiles[currentShooterIndex].classList.contains('invader', 'shooter')) {
-        gameOver();
-    }
-  
-    if (aliensRemoved.length === alienInvaders.length) {
-        youWin();
-    }
+    if (tiles[currentShooterIndex].classList.contains('invader', 'shooter')) gameOver();
+    if (aliensRemoved.length === alienInvaders.length) youWin();
+    
 }
 
 function gameOver() {
@@ -140,30 +133,30 @@ function shoot(e) {
     let currentLaserIndex = currentShooterIndex;
     
     function moveLaser() {
-            tiles[currentLaserIndex].classList.remove('laser');
-            currentLaserIndex -= width
+        tiles[currentLaserIndex].classList.remove('laser');
+        currentLaserIndex -= width
 
-            if (currentLaserIndex < 0) {
-                clearInterval(laserId)
-                return
-            }
+        if (currentLaserIndex < 0) {
+            clearInterval(laserId)
+            return
+        }
 
-            tiles[currentLaserIndex].classList.add('laser');
+        tiles[currentLaserIndex].classList.add('laser');
             
-            if(tiles[currentLaserIndex].classList.contains('invader')) {
-                tiles[currentLaserIndex].classList.remove('laser');
-                tiles[currentLaserIndex].classList.remove('invader');
-                tiles[currentLaserIndex].classList.add('boom');
-                let audioInvaderKilled = new Audio('sounds/invaderkilled.wav');
-                audioInvaderKilled.volume = 0.05
-                audioInvaderKilled.play();
-                setTimeout(() => tiles[currentLaserIndex].classList.remove('boom'), 300)
-                clearInterval(laserId)
-                score ++
-                resultDisplay.innerHTML = `Score : ${score}`
-                let alienRemoved = alienInvaders.indexOf(currentLaserIndex);
-                aliensRemoved.push(alienRemoved);
-            }
+        if(tiles[currentLaserIndex].classList.contains('invader')) {
+            tiles[currentLaserIndex].classList.remove('laser');
+            tiles[currentLaserIndex].classList.remove('invader');
+            tiles[currentLaserIndex].classList.add('boom');
+            let audioInvaderKilled = new Audio('sounds/invaderkilled.wav');
+            audioInvaderKilled.volume = 0.05
+            audioInvaderKilled.play();
+            setTimeout(() => tiles[currentLaserIndex].classList.remove('boom'), 300)
+            clearInterval(laserId)
+            score ++
+            resultDisplay.innerHTML = `Score : ${score}`
+            let alienRemoved = alienInvaders.indexOf(currentLaserIndex);
+            aliensRemoved.push(alienRemoved);
+        }
     }
 
     if (e.key == 's' || e.type == "click") {
