@@ -3,6 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Space Invaders</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -14,8 +15,14 @@
     <div class="container">
         <img class="logo" src="images/logo.png" alt="space-invaders-logo">
         <p>press s to shoot. Left and right to move</p>
-        <div class="grid"></div>
+        <div class="container-grid">
+            <div class="grid"></div>
+            <button id="button-left" class="button left"><</button>
+            <button id="button-right" class="button right">></button>
+            <button id="button-shoot" class="button shoot">s</button>
+        </div>
         <h1 class="results"></h1>
+        
         <script src="app.js"></script>
     </div>  
 </body>

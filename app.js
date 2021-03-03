@@ -1,5 +1,10 @@
 const grid = document.querySelector(".grid");
 const resultDisplay = document.querySelector(".results")
+const buttonLeft = document.getElementById("button-left")
+const buttonRight = document.getElementById("button-right")
+const buttonShoot = document.getElementById("button-shoot")
+
+
 
 let currentShooterIndex = 202;
 let width = 15; //a line has 15 tiles
@@ -49,19 +54,21 @@ function remove() {
 tiles[currentShooterIndex].classList.add('shooter');
 
 function moveShooter(e) {
-   
     tiles[currentShooterIndex].classList.remove('shooter');
-    switch(e.key) {
-        case 'ArrowLeft':
-            if (currentShooterIndex % width !== 0) currentShooterIndex -=1
-            break
-        case 'ArrowRight':
-            if (currentShooterIndex % width < width - 1) currentShooterIndex +=1
-            break
+
+    if (e.key == 'ArrowLeft' || e.target.id == 'button-left') {
+        if (currentShooterIndex % width !== 0) currentShooterIndex -=1
+    } else if (e.key == 'ArrowRight' || e.target.id == 'button-right') {
+        if (currentShooterIndex % width < width - 1) currentShooterIndex +=1 
     }
+
     tiles[currentShooterIndex].classList.add('shooter'); 
 }
+
 document.addEventListener('keydown', moveShooter);
+buttonLeft.addEventListener('click', moveShooter)
+buttonRight.addEventListener('click', moveShooter)
+
 
 function moveInvaders() {
     const leftEdge = alienInvaders[0] % width === 0;
@@ -117,7 +124,7 @@ function youWin() {
     resultDisplay.innerHTML = "YOU WIN press a key to play again"
     clearInterval(invadersId);
     let audioVictory = new Audio('sounds/ff7-victory.mp3');
-    audioVictory.volume = 0.5
+    audioVictory.volume = 0.1
     audioVictory.play();
     clearInterval(flashId)
     flashId = setInterval(flash,100)
@@ -162,17 +169,16 @@ function shoot(e) {
                 aliensRemoved.push(alienRemoved);
             }
     }
-    switch (e.key) {
-        case 's':
-            let audioShoot = new Audio('sounds/shoot.wav');
-            audioShoot.volume = 0.05
-            audioShoot.play();
-            laserId = setInterval(moveLaser, 100)
+
+    if (e.key == 's' || e.type == "click") {
+        let audioShoot = new Audio('sounds/shoot.wav');
+        audioShoot.volume = 0.05
+        audioShoot.play();
+        laserId = setInterval(moveLaser, 100)
     }
 }
 
-function playAgain() {
-
-}
 
 document.addEventListener('keydown', shoot)
+
+buttonShoot.addEventListener('click', shoot)
