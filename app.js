@@ -12,8 +12,18 @@ let flashId;
 let goingRight = true;
 let aliensRemoved = [];
 let score = 0;
+let speed = 500;
 const highScore = localStorage.getItem('highScore') || 0;
 const highScoreBoard = document.querySelector('.highscore');
+const speedRange = document.getElementById('speed-range');
+
+function changeSpeed(e) {
+    speed = (e.target.value / 100) * (20 - 1000) + 1000;
+    clearInterval(invadersId);
+    invadersId = setInterval(moveInvaders, speed);
+}
+
+speedRange.addEventListener("change", (e) => changeSpeed(e));
 
 for (let i=0; i < 225; i++) {
     const tile = document.createElement("div")
@@ -29,7 +39,7 @@ const alienInvaders = [
 ];
 
 function draw() {
-        
+
     for (let i = 0; i < alienInvaders.length; i++) {
         if(!tiles[alienInvaders[i]]) {
             gameOver();
@@ -100,7 +110,9 @@ function moveInvaders() {
 }
 
 function gameOver() {
-    resultDisplay.innerHTML = "GAME OVER press a key or shoot to play again"
+    resultDisplay.innerHTML = "GAME OVER press a key or shoot to play again";
+    let victoryText = document.querySelector(".results");
+    victoryText.style.color = "red";
     clearInterval(invadersId);
     tiles[currentShooterIndex].classList.add('destroyed');
     let audioExplosion = new Audio('sounds/explosion.wav');
@@ -127,7 +139,7 @@ function flash() {
     victoryText.style.color = (resultDisplay.style.color=='black') ? 'green':'black';
 }
 
-invadersId = setInterval(moveInvaders, 500);
+invadersId = setInterval(moveInvaders, speed);
 
 function shoot(e) {
     let laserId;

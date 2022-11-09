@@ -26,6 +26,10 @@ p.highscore-board {
     width: 250px
 }
 
+#speed-range {
+    width: calc(var(--width)/1.5)
+}
+
 .grid {
     width: var(--width);
     height: var(--width);
@@ -48,7 +52,6 @@ p.highscore-board {
 .shooter {
     background-image: url("images/shooter.png");
     background-size: cover;
-    
 }
 
 .destroyed {
@@ -58,13 +61,11 @@ p.highscore-board {
 .laser {
     background-image: url("images/laser.png");
     background-size: cover;
-    
 }
 
 .boom {
     background-image: url("images/boom.png");
     background-size: cover;
-    
 }
 
 .button {
@@ -128,7 +129,11 @@ p.highscore-board {
     }
 
     .logo {
-        width: 100px;
+        width: 80px;
+    }
+
+    label[for=speed-range] {
+        font-size: 10px;
     }
 
     .results {
