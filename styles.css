@@ -10,6 +10,10 @@ h1 {
     height: 50px;
 }
 
+p.highscore-board {
+    font-size: 16px;
+}
+
 .container {
     display: flex;
     align-items: center;
@@ -90,14 +94,7 @@ h1 {
     right: 20px;
 }
 
-@media screen and (max-width: 800px) {
-    h1 {
-        font-size: 20px;
-    }
-
-  }
-
-@media screen and (max-width: 450px) {
+  @media screen and (max-width: 479px) {
     .button {
         display: block;
     }
@@ -106,7 +103,16 @@ h1 {
         width: 200px;
     }
 
-    p {
+    .results {
+        height: 60px;
+        font-size: 18px;
+    }
+
+    p.highscore-board {
+        font-size: 12px;
+    }
+
+    p.instructions {
         display: none;
     }
 
@@ -114,8 +120,32 @@ h1 {
         --width: 250px;
     }
 
-    h1 {
-        font-size: 15px;
+  }
+
+@media screen and (max-width: 360px) {
+    .button {
+        display: block;
+    }
+
+    .logo {
+        width: 100px;
+    }
+
+    .results {
+        height: 30px;
+        font-size: 12px;
+    }
+
+    p.highscore-board {
+        font-size: 10px;
+    }
+
+    p.instructions {
+        display: none;
+    }
+
+    :root {
+        --width: 250px;
     }
 
   }
