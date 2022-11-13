@@ -27,7 +27,8 @@ p.highscore-board {
 }
 
 #speed-range {
-    width: calc(var(--width)/1.5)
+    width: calc(var(--width)/1.5);
+    cursor: pointer;
 }
 
 .grid {
