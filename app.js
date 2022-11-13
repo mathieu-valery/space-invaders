@@ -21,6 +21,7 @@ function changeSpeed(e) {
     speed = (e.target.value / 100) * (20 - 1000) + 1000;
     clearInterval(invadersId);
     invadersId = setInterval(moveInvaders, speed);
+    speedRange.blur();
 }
 
 speedRange.addEventListener("change", (e) => changeSpeed(e));
